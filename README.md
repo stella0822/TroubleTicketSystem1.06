@@ -1,5 +1,5 @@
 # TroubleTicketSystem1.06
-Main code is under WEB-INF.
+Main code is under WEB-INF.</br>
 WEB-INF/classes, all the Java classes.
 WEB-INF/Statements, product information and user information.
 WEB-INF/TTLogin, the main login page.
