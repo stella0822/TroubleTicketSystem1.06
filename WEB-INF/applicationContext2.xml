@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+    
+
+
+	 <!--	
+	基础数据维护
+		--><bean id="BasicdataAction" class="basicdata.action.Imp.BasicdataAction" scope="prototype">
+		<property name="basicdata" ref="BasicdataDaoI"></property>
+		</bean>
+		
+		<bean id="BasicdataDaoI" class="basicdata.dao.Imp.BasicdataDaoImp"> 
+		  <property name="basicdata" ref="TBasicdataProductDAO"></property>
+		  </bean>
+		  
+		 <bean id="TBasicdataProductDAO" class="basicdata.database.Imp.TBasicdataProductDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	    </bean>
+		 
+        <bean id="BasicdataLimitActionImp" class="basicdata.action.Imp.BasicdataLimitActionImp" scope="prototype">
+		<property name="basicdatalimit" ref="BasicLimitDaoI"></property>
+		</bean>
+		<bean id="BasicLimitDaoI" class="basicdata.dao.Imp.BasicdataLimitDaoImp"> 
+		<property name="basicdatalimit" ref="TBasicdataLimitDAO"></property>
+		</bean>
+		<bean id="TBasicdataLimitDAO" class="basicdata.database.Imp.TBasicdataLimitDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	    </bean>
+	    
+	    
+	    <bean id="BasicdataAbsentActionImp" class="basicdata.action.Imp.BasicdataAbsentActionImp" scope="prototype">
+		<property name="basicdataabsent" ref="BasicAbsentDaoI"></property>
+		</bean>
+		<bean id="BasicAbsentDaoI" class="basicdata.dao.Imp.BasicdataAbsentDaoImp"> 
+		<property name="basicdataabsent" ref="TBasicdataAbsentDAO"></property>
+		</bean>
+		<bean id="TBasicdataAbsentDAO" class="basicdata.database.Imp.TBasicdataAbsentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	    </bean>
+	    
+	    
+	    <bean id="BasicdataMatrixActionImp" class="basicdata.action.Imp.BasicdataMatrixActionImp" scope="prototype">
+		<property name="basicdatamatrix" ref="BasicMatrixDaoI"></property>
+		</bean>
+		<bean id="BasicMatrixDaoI" class="basicdata.dao.Imp.BasicdataMatrixDaoImp"> 
+		<property name="basicdatamatrix" ref="TBasicdataMatrixDAO"></property>
+		</bean>
+		<bean id="TBasicdataMatrixDAO" class="basicdata.database.Imp.BasicdataMatrixDatabaseImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	    </bean>
+	    
+	    
+	<!--	
+	故障单管理
+		-->	  
+		<bean id="TTManageSearchActionImp" class="ttmanage.action.Imp.TTManageSearchActionImp" scope="prototype">
+		<property name="ttmanage" ref="TTManageSearchDaoI"></property>
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		</bean>
+		<bean id="TTManageSearchDaoI" class="ttmanage.dao.Imp.TTManageSearchDaoImp"> 
+		<property name="ttmanage" ref="TTroubleticketDAO"></property>
+		</bean>
+		<bean id="TTroubleticketDAO" class="ttmanage.database.Imp.TTroubleticketDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	    </bean>  
+	    
+	<!--	
+	故障单管理
+		-->	  
+		<bean id="LoginActionImp" class="ttlogin.action.Imp.LoginActionImp" scope="prototype">
+		<property name="loginData" ref="LoginDaoImp"></property>
+		</bean>
+		<bean id="LoginDaoImp" class="ttlogin.dao.Imp.LoginDaoImp"> 
+		<property name="loginData" ref="LoginDatabaseImp"></property>
+		</bean>
+		<bean id="LoginDatabaseImp" class="ttlogin.database.Imp.LoginDatabaseImp">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	    </bean> 
+		  
+		  
+		  
+		  
+	 <bean id="TTtHistoryDAO" class="ttmanage.database.TTtHistoryDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	  </bean>
+	  
+	  
+	  
+	<!--
+	FAQ 
+	-->
+	<bean id="FAQAction" class="FAQ.action.imp.FAQAction">
+		<property name="TFaq" ref="TFaqDAO"> </property>
+		<property name="ttroubletkt" ref="TTManageSearchDaoI"> </property>
+	</bean>
+	<bean id="TFaqDAO" class="FAQ.dao.imp.TFaqDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>	    
+	    
+		     
+		  
+		  
+		</beans>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

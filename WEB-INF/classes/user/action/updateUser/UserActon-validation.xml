@@ -1,0 +1,99 @@
+ <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+   
+	<!--                                       用户名验证-->
+	<field name="user.userName" >
+		<!--去掉前后空格 验证是否为空  -->
+		<field-validator type="requiredstring" short-circuit="true">
+			<!--     是否去掉前后空格-->
+			<param name="trim">true</param>
+			<!--      引用国际化资源-->
+			<message key="uname.error1"></message>
+		</field-validator>
+		<!--     用户名只能是数字和字母，并且长度必须在3到10之间！-->
+		<field-validator type="regex"  short-circuit="true">
+			<param name="expression"><![CDATA[(\w{3,10})]]></param>
+			<message key="uname.error2"></message>
+		</field-validator>
+
+
+	</field>
+	<!--                                                密码验证-->
+	<field name="user.password">
+		<field-validator type="requiredstring" short-circuit="true">
+			<!--     是否去掉前后空格-->
+			<param name="trim">true</param>
+			<!--      引用国际化资源-->
+			<message key="upassword.error1"></message>
+		</field-validator>
+
+		<field-validator type="regex" short-circuit="true">
+			<param name="expression"><![CDATA[(\w{3,10})]]></param>
+			<message key="upassword.error2"> </message>
+		</field-validator>
+	</field>
+
+      	<!--                                       重复密码验证-->
+	<field name="user.upass2">
+			<field-validator type="requiredstring" short-circuit="true">
+			<!--     是否去掉前后空格-->
+			<param name="trim">true</param>
+			<!--      引用国际化资源-->
+			<message key="upassword.error3"></message>
+		</field-validator>
+    <field-validator type="fieldexpression" short-circuit="true">
+        	<param name="expression"><![CDATA[(user.password==user.upass2)]]></param>
+        	<message key="upassword.error4"></message>
+        </field-validator>
+	</field>
+<!--	真实姓名验证                                  -->
+		<field name="user.realName">
+    <field-validator type="regex" short-circuit="true">
+        	<param name="expression"><![CDATA[(^([\u4E00-\u9FA5]|\w)*$)]]></param>
+        	<message key="uRealName.error1"></message>
+        </field-validator>
+	</field>
+	
+<!--	地址验证-->
+			<field name="user.address">
+    <field-validator type="regex" short-circuit="true">
+        	<param name="expression"><![CDATA[(^([\u4E00-\u9FA5]|\w)*$)]]></param>
+        	<message key="uAddress.error1"></message>
+        </field-validator>
+	</field>
+	
+<!--		 日期验证-->
+	    <field name="user.birthdate">
+	<field-validator type="requiredstring" short-circuit="true">
+<!--			     是否去掉前后空格-->
+			<param name="trim">true</param>
+			<message key="uBirthdate.error1"></message>                                            
+		</field-validator>
+ 
+ 
+    </field>
+
+    
+<!--    联系方式验证-->
+    <field name="user.tel">
+       <field-validator type="regex" short-circuit="true">
+       <param name="expression"><![CDATA[((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)]]></param>
+        <message key="uTel.error1"></message>
+       
+       </field-validator>
+       
+<!--       email验证-->
+    </field>
+    <field name="user.emil">
+    <field-validator type="email" short-circuit="true">
+         <message key="uEmail.error1"></message>
+    </field-validator>
+    
+    
+    </field>
+    
+    
+  
+</validators>

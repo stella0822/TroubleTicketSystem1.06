@@ -1,0 +1,28 @@
+form * {
+	padding: 0;
+	margin: 0
+}
+
+table td span {
+	color: #a40000
+}
+
+input.rightformcss,select.rightformcss,textarea.rightformcss {
+	border: 1px solid green;
+}
+
+.failmsg {
+	color: #a40000;
+}
+
+.msgvaluecss {
+	font-style: italic;
+}
+
+input.failformcss,select.failformcss,textarea.failformcss {
+	border: 1px solid #a40000;
+}
+
+.inputDefault {
+	border: 1px solid #a5b5ee;
+}

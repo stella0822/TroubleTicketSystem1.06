@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+
+	<package name="strutsqsp" extends="struts-default">
+		 
+
+		<!--    登录  -->
+		<action name="login_*" class="loginAction" method="{0}">
+			<result name="Ly" type="chain">index</result>
+			<result name="Ry">/WEB-INF/page/retrieveProssword.jsp </result>
+			<result name="input">/WEB-INF/page/_login_.jsp </result>
+		</action>
+		
+		<!--	
+	 -******************************************************************************************
+		-->
+		<!-- 用户管理 -->
+		<action name="NoChickUserAction_*" class="NoChickUserAction" method="{0}">
+				<result name="ok" type="redirectAction">
+				 <param name="actionName">purview_UserGroup.action</param>   
+                <param name="stateText">${stateText}</param> 
+                <param name="menu_Fid">${menu_Fid}</param>  
+                 <param name="page_menu_ID">${page_menu_ID}</param> 
+			  </result>
+				<result name="ok2" type="redirectAction">purview_department_user?stateText=${stateText};menu_Fid=${menu_Fid};page_menu_ID=${page_menu_ID} </result>
+			<result name="true" type="chain">purview_UserGroup</result>
+			<result name="Ry">/WEB-INF/page/retrieveProssword.jsp </result>
+			<result name="input">/WEB-INF/page/loginAddJsp.jsp </result>
+		</action>
+		<!-- 角色功能权限管理 -->
+		
+		<action name="RoleAction_*" class="roleAction" method="{0}">
+			<result name="ok"   type="chain">purview_role_user</result>
+		    <result name="true" type="redirectAction">purview_role_user?stateText=${stateText} </result>
+		</action>
+		<!--   菜单树 管理 -->
+		<action name="PurviewAction_*" class="PurviewAtion" method="{0}">
+			
+			<result name="Ry">/WEB-INF/page/retrieveProssword.jsp </result>
+			<result name="input">/WEB-INF/page/loginAddJsp.jsp </result>
+			<result name="jsTree" type="chain">jsTree</result>
+				<result name="jsTree2" type="chain">jsTree2</result>
+			<result name="error">/WEB-INF/page/error.jsp</result>
+		</action><!--
+ 日志
+  	--><action name="LogAction_*" class="LogAction" method="{0}" >
+			<result name="input">/WEB-INF/log/log_log_list.jsp </result>
+			<result name="input2">/WEB-INF/log/log_log_list2.jsp </result>
+			<result name="LogAction_select" type="chain" >LogAction_select</result>
+			 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action><!--
+  报表统计 StatementsDao  -->
+      
+       <action name="StatementsAction_*" class="StatementsAction" method="{0}" >
+               <result name="input">/WEB-INF/Statements/Statements_user.jsp </result>
+                <result name="input_pro">/WEB-INF/Statements/Statements_pro.jsp</result>
+                 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+             
+               
+       </action><!--
+ 
+ FAQ
+     --><action name="FAQAction_*" class="FAQAction" method="{0}">
+         <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+          <result name="yes">/WEB-INF/FAQ/FAQ_list.jsp</result>
+         <result name="no">/WEB-INF/FAQ/FAQ_list.jsp</result>
+       </action> 
+       <action name="FAQCheck_*" class="FAQAction" method="{0}" >
+         <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+          <result name="yes">/WEB-INF/FAQ/FAQ_check.jsp</result>
+         <result name="no">/WEB-INF/FAQ/FAQ_check.jsp</result>
+       </action> 
+       <action name="FAQUpdate_*" class="FAQAction" method="{0}" >
+         <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+          <result name="yes">/WEB-INF/FAQ/FAQ_update.jsp</result>
+         <result name="no">/WEB-INF/FAQ/FAQ_update.jsp</result>
+       </action>
+  
+  <!--	
+	 -******************************************************************************************
+		-->
+		
+		<!--	分页 action	-->
+		<action name="page" class="pageAction">
+			<result name="select" type="chain"> chickUser </result>
+			<result name="input" type="chain">chickUser </result>
+		</action>
+	 
+	</package>
+
+</struts>
+ 
+

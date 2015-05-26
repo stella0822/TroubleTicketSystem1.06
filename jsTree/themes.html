@@ -1,0 +1,145 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jsTree v.1.0 - themes documentation</title>
+	<script type="text/javascript" src="../js/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+	<script type="text/javascript" src="../js/jquery.hotkeys.js"></script>
+	<script type="text/javascript" src="jquery.jstree.js"></script>
+	
+	 <script type="text/javascript" src="../js/jquery.contextmenu.r2.js"></script>
+	
+	 <style>
+	  ul li {
+	    font-size: 14px;
+	  }
+	  .menuHead 
+	  {
+	background-color: #FFFFF4;
+	width: 95%;
+	font-family: "黑体";
+	padding-top: 10px;
+	padding-left: 10px;
+	font-size: 14
+ 
+     }
+	 </style>
+ 
+</head>
+<body style="margin: 0px;background-color: #FFFFFF;">
+<div class="menuHead">用户组菜单</div>
+<div id="demo1" class="demo" >
+ 
+</div>
+
+
+
+ <!--右键菜单的源-->
+     <div class="contextMenu" id="myMenu1">
+      <ul>
+        <li id="open">   添加组</li>
+        <li id="email">  添加子组</li>
+        <li id="save">   删除组</li>
+        <li id="delete"> 移动组</li>
+      </ul>
+    </div>
+
+
+<script type="text/javascript" class="source"> 
+/// 添加菜单源
+var menu_html=window.parent.getDemoByid('menu_html');
+ $("#demo1").html(menu_html.html());
+/// 添加 点击事件
+ 
+$(function () 
+   {
+	/***///// 菜单处理
+	$("#demo1").jstree({ 
+		"themes" : {
+			"theme" : "default" 
+		},
+		"ui" : {
+			"select_limit" : 2,
+			"select_multiple_modifier" : "alt",
+			"selected_parent_close" : "select_parent",
+			"initially_select" : [ "phtml_3" ]
+		},
+		"core" : { "initially_open" : [ "phtml_3" ] },
+		"plugins" : [ "themes", "html_data", "ui","themeroller" ]
+	});
+
+      var a=window.parent.getDemoByid('menu_id');
+	 $("#demo1").height(a.height()-35).width(a.width()-17).css("padding-left","15px");  
+     
+	  
+ 
+    
+});
+
+////////////////////////////得到 父id
+ function getFid(e){
+	/*  e = e || window.event;
+	var target = e.target || e.srcElement;
+
+	/* var srcElement=""   
+		 srcElement= srcElement + " \n" +  "event.srcElement.id : " + event.srcElement.id   
+		 srcElement= srcElement + " \n" +  "event.srcElement.tagName : " + event.srcElement.tagName   
+		 srcElement= srcElement + " \n" +  "event.srcElement.type : " + event.srcElement.type   
+		 srcElement= srcElement + " \n" +  "event.srcElement.value : " + event.srcElement.value   
+		 srcElement= srcElement + " \n" +  "event.srcElement.name : " + event.srcElement.name   
+		 srcElement= srcElement + " \n" +  "event.srcElement.className : " + event.srcElement.className   
+		 srcElement= srcElement + " \n" +  "event.srcElement.parentElement.id : " + event.srcElement.parentElement.id   
+		 srcElement= srcElement + " \n" +  "event.srcElement.getattribute : " + event.srcElement.getAttribute   
+		 alert(srcElement); 
+
+	var sid=e.srcElement.parentElement.id; // 当前事件对象的 id  event
+	*/
+	
+	 var sid=e.id;	 
+     var fid=  $("#"+sid).parents(); // 父元素 
+     fid=$(fid[1]).attr("id");
+     alert("当前元素id:"+sid+" 父id:"+fid);
+
+
+
+		/// 阻止 冒泡
+	        if (window.event) {  
+		         event.cancelBubble = true;  
+		    }else if (e){  
+		        e.stopPropagation();  
+		    }  
+	}
+
+ 
+
+	//右键菜单
+ $('li').contextMenu('myMenu1', 
+	     {
+	          bindings: 
+	          {
+	            'open': function(t)
+	            {
+                   alert("11");
+	                getFid(t);
+	            },
+	            'email': function(t) {
+	            	getFid(t);
+	            },
+	            'save': function(t) {
+	            	getFid(t);
+	            },
+	            'delete': function(t) {
+	            	getFid(t);
+	            }
+	          }
+
+	    });
+
+  
+</script>
+</body>
+
+</html>

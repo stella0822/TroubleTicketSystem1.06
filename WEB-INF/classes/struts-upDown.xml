@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GBK"?>
+
+	<!-- 指定Struts 2配置文件的DTD信息 -->
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+	<!-- struts是Struts 2配置文件的根元素 -->
+
+<struts>
+	<!-- 以下常量设置了表单允许一次上传的最大字节数 -->
+	<constant name="struts.multipart.maxSize" value="102402100"></constant>
+	<!-- 系统常量定义，定义上传文件临时存放路径 --><!--
+    <constant name="struts.multipart.saveDir" value="c:\"></constant>
+	--><package name="strutsUpdown" extends="json-default">
+  <!--	  文件上传-->
+
+		<action name="upload" class="upload">
+			<!-- 通过param 元素注入savePath属性 -->
+			<param name="savePath">interim/upload</param>
+			 <param name="maxSize">10</param>
+			<param name="width">800</param>
+			<param name="height">800</param>
+			
+			<!--<interceptor-ref name="fileUpload">
+                  <param name="allowedTypes">
+                     application/zip,application/octet-stream
+                  </param>
+                </interceptor-ref>
+			
+			--><result name="input">/index.jsp</result>
+			<result type="json" name="success">
+				<param name="contentType">
+					text/html
+        		</param>
+			</result>
+			<result type="json" name="error">
+				<param name="contentType">
+					text/html
+        		</param>
+			</result>
+		</action><!--
+             文件操作
+         --><action name="FileAction_*" class="FileAction" method="{0}">
+           
+          </action>     
+		<!--		文件下载-->
+		<action name="download" class="download">
+			<!-- inputPath是我们注入的图片路径 -->
+			<param name="inputPath">/upload</param>
+			<!-- 因为要下载，所以要设置Result类型为stream -->
+			<result name="success" type="stream">
+				<!-- 设置下载文件的类型 -->
+				<!--
+					<param name="contentType">image/gif,image/pjpeg</param>
+				-->
+				<!-- 设置下载文件的文件位置 -->
+				<param name="inputName">targetFile</param>
+				<!-- 设置下载文件的处理方式 -->
+				<param name="contentDisposition">attachment;filename="${fileName}"</param>
+				<!-- 指定下载文件的缓冲区大小 -->
+				<param name="bufferSize">4096</param>
+			</result>
+
+		</action>
+
+	</package>
+
+</struts>
+

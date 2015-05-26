@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	<bean id="sessionFactory2"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="configLocation" value="classpath:hibernate.cfg.xml">
+		</property>
+	</bean>
+	<!--
+		 用户登录
+	-->
+ 
+	<bean id="loginAction" class="user.action.login.LoginAction" scope="prototype">
+		<property name="login" ref="loginDao" />
+	</bean>
+	
+	<bean id="NoChickUserAction" class="user.action.updateUser.NoChickUserAction" scope="prototype">
+		<property name="udao" ref="userDao" />
+		<property name="bdMatrix" ref="TBasicdataMatrixDAO" />
+	</bean>
+	<bean id="loginDao" class="user.dao.login.imp.LogingDaoImp">
+		<property name="login">
+
+			<bean class="user.database.login.Imp.loginImp" >
+			<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		    </property>
+			</bean>
+		</property>
+	</bean>
+	 
+	<!--
+		*********************************************************************用户修改
+	-->
+<!--    用户注册-->
+	<bean id="userAction" class="user.action.updateUser.UserActon" scope="prototype">
+		<property name="UUser" ref="userDao">		</property>
+	</bean>
+	
+	<bean id="userDao" class="user.dao.updateUser.imp.UpdateUserDaoImp">
+	  <property name="update" ref="TUserDAO"><!--
+	    <bean class="user.database.updateUser.imp.UpdateUserImp"></bean>
+	  --></property>
+    </bean>
+<!--    用户检查 删除-->
+    <bean id="chickUserAction" class="user.action.updateUser.NoChickUserAction" >
+      <property name="udao" ref="userDao"></property>
+    </bean>
+<!--    用户修改-->
+    <bean id="updateUserAction" class="user.action.updateUser.UpdateuserAction" scope="prototype">
+      <property name="UUser" ref="userDao"></property>
+    </bean>
+  
+<!--  分页action  -->
+    <bean id="pageAction" class="tool.page.PageAction"/>
+<!--文件上传    -->
+<bean id="upload" class="tool.upDownLoad.FileUploadAction"/>
+<!--文件上传    -->
+<bean id="FileAction" class="tool.file.FileAction">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+</bean>
+
+<!--文件下载 -->
+<bean id="download" class="tool.upDownLoad.DownloadAction"></bean>
+	<bean id="TUserDAO" class="user.database.updateUser.imp.TUserDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+ 
+	<!--
+	添加 配置文件在下面添加  ************************************************************************--><!--
+      权限管理
+	 -->
+	 <bean id="PurviewAtion" class="purview.action.Imp.PurviewAtion" scope="prototype">
+		 <property name="purview" ref="PurviewDao"></property>
+	</bean>
+	<bean id="PurviewDao" class="purview.dao.Imp.PurviewDaoImp">
+	  <property name="purview" ref="TUserGroupDAO">
+	  </property>
+    </bean>
+	<bean id="TUserGroupDAO" class="purview.database.TUserGroupDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<!--
+	关键字 
+	--><bean id="TConfigurationTextDAO"
+		class="configuration.database.TConfigurationTextDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean><!--
+	角色功能管理
+	-->
+	<bean id="roleAction" class="user.action.role.Imp.RoleAction">
+	    <property name="roleDao" ref="roleDAO"></property>
+	</bean>
+	
+	 <bean id="roleDAO" class="user.dao.role.Imp.RoleDaoImp">
+	    <property name="roleDatabase" ref="RoleDAO"></property>
+	</bean>
+	
+	 <bean id="TUserRoleDAO" class="user.database.role.Imp.TUserRoleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		
+	</bean>
+	<bean id="RoleDAO" class="user.database.role.Imp.RoleDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+		<property name="tuserRoleDao" ref="TUserRoleDAO"></property>
+	 </bean>
+	 
+	 
+	<bean id="TContactDAO" class="ttmanage.database.TContactDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TDocumentDAO" class="ttmanage.database.TDocumentDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="TTtAssignfailureDAO"
+		class="ttmanage.database.TTtAssignfailureDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean><!--
+	日志
+	 -->
+	 <bean id="LogAction" class="log.LogAction">
+	    <property name="TLogDAO" ref="TLogDAO"></property>
+	 </bean>
+	 <bean id="TLogDAO" class="log.TLogDAO">
+	    <property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	 
+	 </bean>
+	
+	
+	<bean id="StatementsAction" class="Statements.action.imp.StatementsAction" >
+	      <property name="statementsDaoI">
+	       <bean class="Statements.dao.Imp.StatementsDao">
+	         <property name="sessionFactory">
+			   <ref bean="sessionFactory" />
+		     </property>
+	       </bean>
+	      </property>
+	</bean>
+	
+	<bean id="TScorettAction" class="ScoreTT.action.Imp.ScoreTTAction">
+		<property name="stDao" ref="TScorettDAO"></property>
+	</bean>
+	<bean id="TScorettDAO" class="ScoreTT.dao.Imp.TScorettDAO">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	
+	
+	
+	</beans>

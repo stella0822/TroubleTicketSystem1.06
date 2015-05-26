@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"> 
+	 
+	<filter> 
+<filter-name>purviewFilter</filter-name> 
+<filter-class>purview.tool.purviewFilter</filter-class> 
+</filter> 
+<filter-mapping> 
+<filter-name>purviewFilter</filter-name> 
+<url-pattern>*.action</url-pattern> 
+</filter-mapping> 
+	
+ <filter>   
+        <filter-name>struts-cleanup</filter-name>   
+        <filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>   
+    </filter>  
+    <filter-mapping>  
+        <filter-name>struts-cleanup</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping> 
+ 
+   <!--   <filter>  
+        <filter-name>struts23</filter-name>  
+        <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>  
+    </filter>  
+    <filter-mapping>  
+        <filter-name>struts23</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>
+ 
+	--><filter>
+		<!-- 定义核心Filter的名字 -->
+		<filter-name>struts2</filter-name>
+		<!-- 定义核心Filter的实现类 -->
+	 <filter-class>
+			org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
+	</filter>
+	<!-- FilterDispatcher用来初始化Struts 2并且处理所有的Web请求 -->
+	<filter-mapping>
+		<filter-name>struts2</filter-name>
+		<url-pattern>*.action</url-pattern>
+	</filter-mapping>
+	
+
+	
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>WEB-INF/applicationContext.xml,WEB-INF/applicationContext2.xml,WEB-INF/quartz-config.xml </param-value>
+	</context-param>
+	
+	
+ 	<!-- 配置Struts2的CleanUp的Filter,上传下载时最好加上这个过滤器，避免出现一些未知错误 -->
+<!--	<filter>-->
+<!--		<filter-name>cleanup</filter-name>-->
+<!--		<filter-class>org.apache.struts2.dispatcher.ActionContextCleanUp</filter-class>-->
+<!--	</filter>-->
+<!--	<filter-mapping>-->
+<!--		<filter-name>cleanup</filter-name>-->
+<!--		<url-pattern>/*</url-pattern>-->
+<!--	</filter-mapping>-->
+
+<filter>
+<filter-name>Set Character Encoding</filter-name>
+<filter-class>tool.SetCharacterEncodingFilter</filter-class>
+</filter>
+<filter-mapping>
+<filter-name>Set Character Encoding</filter-name>
+<url-pattern>/*</url-pattern>
+</filter-mapping>
+
+
+    
+     <welcome-file-list>
+		<welcome-file>MyHtml.html</welcome-file>
+	</welcome-file-list>
+</web-app>

@@ -1,0 +1,20 @@
+ <!DOCTYPE validators PUBLIC
+        "-//OpenSymphony Group//XWork Validator 1.0.2//EN"
+        "http://www.opensymphony.com/xwork/xwork-validator-1.0.2.dtd">
+<validators>
+   
+	 <field name="file">
+	  <field-validator type="file">
+	  <param name="fileType">text/plain,image/bmp,image/jpg,image/gif,image/pjpeg,image/jpeg</param>
+	  <param name="maxSize">10000000</param>
+	  <param name="width">800</param>
+	  <param name="height">800</param>
+	  <message>图片上传失败!</message>
+	  </field-validator>
+	 </field>
+       
+ 
+    
+    
+  
+</validators>

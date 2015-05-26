@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="GBK"?>
+	<!-- 指定Struts 2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+	<!-- struts是Struts 2配置文件的根元素 -->
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<!-- 取消struts2 标签 格式-->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 引用 国际化资源文件-->
+	<constant name="struts.custom.i18n.resources" value="messageResource" />
+
+	<constant name="struts.objectFactory" value="spring" />
+	<!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开 -->
+	<constant name="struts.configuration.xml.reload" value="true" />
+
+	<!-- 是否使用struts的开发模式。开发模式会有更多的调试信息。默认值为false(生产环境下使用),开发阶段最好打开  -->
+	<constant name="struts.devMode" value="false" />
+
+    <!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段最好关闭  --> 
+
+    <constant name="struts.serve.static.browserCache" value="false" /> 
+
+
+
+	<!--引用其他struts文件 -->
+	<include file="struts-upDown.xml" />
+	<include file="struts-p.xml" />
+	<include file="struts-szq.xml" />
+
+
+	<!-- Struts 2的Action必须放在指定的包空间下定义 -->
+
+
+
+	<package name="strutsqs" extends="struts-default">
+		<!--报错 跳转 页面 设置-->
+		<global-results>
+			<result name="client-abort-exception">/WEB-INF/page/error.jsp </result>
+			<result name="error">/WEB-INF/page/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="client-abort-exception"
+				exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+		<!--	jsp页面跳转	-->
+		<action name="error*">
+			<result>/WEB-INF/TTLogin/TTLogin_Main.jsp</result>
+		</action>
+		<action name="BasicData_*">
+			<result>/WEB-INF/BasicData/{0}.jsp</result>
+		</action>
+		<action name="TTManage_*">
+			<result>/WEB-INF/TTManage/{0}.jsp</result>
+		</action>
+		<action name="purview_*">
+			<result>/WEB-INF/purview/{0}.jsp</result>
+		</action>
+		<action name="TTLogin_*">
+			<result>/WEB-INF/TTLogin/{0}.jsp</result>
+		</action>
+		<action name="log_*">
+			<result>/WEB-INF/log/{0}.jsp</result>
+		</action>
+		<action name="Statements_*">
+			<result>/WEB-INF/Statements/{0}.jsp</result>
+		</action>
+		<action name="FAQ_*">
+			<result>/WEB-INF/FAQ/{0}.jsp</result>
+
+		</action>
+
+		<action name="index">
+			<result>/WEB-INF/page/index.jsp</result>
+		</action>
+		<action name="ScoreTT_*">
+			<result>/WEB-INF/ScoreTT/{0}.jsp</result>
+		</action>
+		<action name="*">
+			<result>/WEB-INF/page/{0}.jsp</result>
+
+		</action>
+	</package>
+
+</struts>  
+ 
+ 
+

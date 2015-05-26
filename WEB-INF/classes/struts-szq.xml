@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+
+	<package name="strutsszq" extends="struts-default">
+		
+		<!--	
+	 -******************************************************************************************
+		-->
+		<!--	
+	基础数据维护
+		-->
+		<action name="BasicdataAction_*" class="BasicdataAction" method="{0}">
+		<result name="yes">/WEB-INF/BasicData/BasicData_Product.jsp</result>
+		<result name="no">/WEB-INF/BasicData/BasicData_Product.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>		
+		<action name="BasicdataLimitAction_*" class="BasicdataLimitActionImp" method="{0}">
+		<result name="yes">/WEB-INF/BasicData/BasicData_Limit.jsp</result>
+		<result name="no">/WEB-INF/BasicData/BasicData_Limit.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>	
+		<action name="BasicdataAbsentAction_*" class="BasicdataAbsentActionImp" method="{0}">
+		<result name="yes">/WEB-INF/BasicData/BasicData_Absent.jsp</result>
+		<result name="no">/WEB-INF/BasicData/BasicData_Absent.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>	
+		<action name="BasicdataMatrixAction_*" class="BasicdataMatrixActionImp" method="{0}">
+		<result name="yes">/WEB-INF/BasicData/BasicData_Matrix.jsp</result>
+		<result name="no">/WEB-INF/BasicData/BasicData_Matrix.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		
+		<!--	
+	 -******************************************************************************************
+		-->
+		<!--	
+	故障单管理
+		-->
+		<action name="TTManageSearchAction_*" class="TTManageSearchActionImp" method="{0}">
+	<result name="yes" type="redirectAction">
+		    <param name="actionName">TTManageSearchAction2_Add</param>
+		    <param name="tt">${tt}</param>
+		    <param name="checkId">${checkId}</param>
+		    <param name="ifalert">${ifalert}</param>
+		    <param name="ifalert2">${ifalert2}</param>
+		    <param name="notAssignReason">${notAssignReason}</param>
+		    <param name="forwardReason">${forwardReason}</param>
+		    <param name="date1">${date1}</param>
+		    <param name="date2">${date2}</param>
+		    <param name="searchTitle">${searchTitle}</param>
+		    <param name="searchStatus">${searchStatus}</param>
+		    <param name="searchPriority">${searchPriority}</param>
+		    <param name="searchContact">${searchContact}</param>
+		    <param name="searchCreateB">${searchCreateB}</param>
+		    <param name="searchCreater">${searchCreater}</param>
+		    <param name="searchChargeB">${searchChargeB}</param>
+		    <param name="searchCharger">${searchCharger}</param>
+    </result>
+	<result name="no" type="redirectAction">
+		    <param name="actionName">TTManageSearchAction2_Add</param>
+		    <param name="tt">${tt}</param>
+		    <param name="checkId">${checkId}</param>
+		    <param name="ifalert">${ifalert}</param>
+		    <param name="ifalert2">${ifalert2}</param>
+		    <param name="notAssignReason">${notAssignReason}</param>
+		    <param name="forwardReason">${forwardReason}</param>
+		    <param name="date1">${date1}</param>
+		    <param name="date2">${date2}</param>
+		    <param name="searchTitle">${searchTitle}</param>
+		    <param name="searchStatus">${searchStatus}</param>
+		    <param name="searchPriority">${searchPriority}</param>
+		    <param name="searchContact">${searchContact}</param>
+		    <param name="searchCreateB">${searchCreateB}</param>
+		    <param name="searchCreater">${searchCreater}</param>
+		    <param name="searchChargeB">${searchChargeB}</param>
+		    <param name="searchCharger">${searchCharger}</param>
+    </result>
+		<result name="window">/WEB-INF/TTManage/TTManage_Search_window.jsp</result>
+		<result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageSearchAction2_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_Search.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_Search.jsp</result>
+		<result name="window">/WEB-INF/TTManage/TTManage_Search_window.jsp</result>
+		<result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageCreateaddpro_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_Create_addpro.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_Create_addpro.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageCreateadduser_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_Create_adduser.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_Create_adduser.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageCreateaddcorp_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_Create_addcorp.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_Create_addcorp.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageAdd_*" class="TTManageSearchActionImp" method="{0}">
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+	<result name="yes" type="redirectAction">
+    <param name="actionName">TTManageSearchAction2_Add</param>
+    <param name="tt">${tt}</param>
+    <param name="doc">${doc}</param>
+    </result>
+	<result name="no" type="redirectAction">
+    <param name="actionName">TTManageSearchAction2_Add</param>
+    <param name="tt">${tt}</param>
+    <param name="doc">${doc}</param>
+    </result>
+		</action>
+		<action name="TTManageCheckAction_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_Check.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_Check.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageUpdateAction_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_Update.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_Update.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="TTManageUpdate_*" class="TTManageSearchActionImp" method="{0}">
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+	<result name="yes" type="redirectAction">
+    <param name="actionName">TTManageSearchAction2_Add</param>
+    <param name="tt">${tt}</param>
+    <param name="doc">${doc}</param>
+    </result>
+	<result name="no" type="redirectAction">
+    <param name="actionName">TTManageSearchAction2_Add</param>
+    <param name="tt">${tt}</param>
+    <param name="doc">${doc}</param>
+    </result>
+		</action>
+		<action name="TTManageFAQ_*" class="TTManageSearchActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTManage/TTManage_FAQ_check.jsp</result>
+		<result name="no">/WEB-INF/TTManage/TTManage_FAQ_check.jsp</result>
+		 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		
+		
+		<!--	
+	 -******************************************************************************************
+		-->
+		<!--	
+	用户登录
+		-->
+		<action name="TTLoginAction_*" class="LoginActionImp" method="{0}">
+		<result name="yes">/WEB-INF/TTLogin/TTLogin_Main.jsp</result>
+		<result name="no">/WEB-INF/TTLogin/TTLogin_Main.jsp</result>
+		</action><!--
+评分
+  	--><action name="ScoreTTAction_*" class="TScorettAction" method="{0}" >
+			<result name="yes">/WEB-INF/ScoreTT/ScoreTT_list.jsp </result>
+			<result name="no">/WEB-INF/ScoreTT/ScoreTT_list.jsp </result>
+			 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+		<action name="ScoreTTAction2_*" class="TScorettAction" method="{0}" >
+			<result name="yes">/WEB-INF/ScoreTT/ScoreTT_list2.jsp </result>
+			<result name="no">/WEB-INF/ScoreTT/ScoreTT_list2.jsp </result>
+			 <result name="downExcel">/WEB-INF/page/downExcel.jsp</result>
+		</action>
+	 
+	 
+	</package>
+
+</struts>
+ 
+
